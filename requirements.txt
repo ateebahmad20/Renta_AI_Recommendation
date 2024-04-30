@@ -4,3 +4,4 @@ torch
 numpy
 geopy
 scikit-learn
+uvicorn
