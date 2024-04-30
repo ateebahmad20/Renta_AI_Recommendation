@@ -1,0 +1,6 @@
+fastapi
+pandas
+torch
+numpy
+geopy
+scikit-learn
