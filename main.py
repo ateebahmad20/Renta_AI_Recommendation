@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from TouristRecommendation.tourist_recommendation import hotel_recommendations
+from TouristRecommendation.tourist_recommendation import *
 from TenantRecommendation.tenant_recommendation import house_recommendation
 
 app = FastAPI()
@@ -7,6 +7,16 @@ app = FastAPI()
 @app.get('/')
 def home():
     return {"Health Check": "OK", "RENTA Version": "0.0.1"}
+
+@app.get("/Search_Hotel")
+def search_hotel(Hotel_Name: str):
+    hotels = get_hotel(Hotel_Name.lower())
+    return hotels
+
+@app.get("/Search_Hotel_by_CrimeRate")
+def search_hotel_crime(Crime_Rate: str):
+    hotels = get_hotel_by_CrimeRate(Crime_Rate.lower())
+    return hotels
 
 @app.post("/House_Recommendation")
 def house_recommender(Preferred_Location_1: str, Preferred_Location_2: str, Preferred_Location_3: str, Price_in_k: int):

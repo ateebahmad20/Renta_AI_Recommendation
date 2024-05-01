@@ -3,6 +3,7 @@ import pandas as pd
 df = pd.read_csv('TouristRecommendation/TouristDataset.csv')
 
 df_unique_hotels = df.drop_duplicates(subset=['hotel'])
+df_unique_hotels = df_unique_hotels.reset_index(drop=True)
 df_unique_user = df.drop_duplicates(subset=['userName'])
 df_unique_city = df.drop_duplicates(subset=['userCity'])
 df_unique_price = df.drop_duplicates(subset=['price_per_night($)'])
