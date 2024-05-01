@@ -23,6 +23,11 @@ def search_hotel_location(Location: str):
     hotels = get_hotel_by_location(Location.lower())
     return hotels
 
+@app.get("/Search_Hotel_by_price")
+def search_hotel_price(Max_Price: int):
+    hotels = get_hotel_by_price(Max_Price)
+    return hotels
+
 @app.post("/House_Recommendation")
 def house_recommender(Preferred_Location_1: str, Preferred_Location_2: str, Preferred_Location_3: str, Price_in_k: int):
     houses = house_recommendation(Preferred_Location_1, Preferred_Location_2, Preferred_Location_3, Price_in_k)
