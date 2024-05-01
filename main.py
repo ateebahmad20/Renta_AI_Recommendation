@@ -1,10 +1,8 @@
 from fastapi import FastAPI
 from TouristRecommendation.tourist_recommendation import hotel_recommendations
 from TenantRecommendation.tenant_recommendation import house_recommendation
-from mangum import Mangum
 
 app = FastAPI()
-handler = Mangum(app)
 
 @app.get('/')
 def home():

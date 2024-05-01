@@ -5,4 +5,3 @@ numpy
 geopy
 scikit-learn
 uvicorn
-mangum
