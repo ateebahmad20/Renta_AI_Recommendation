@@ -10,10 +10,67 @@ model = Recommender(user_classes, location_classes, hotel_classes, hotelRating_c
 device = "cuda" if torch.cuda.is_available() else "cpu"
 model.load_state_dict(torch.load("model/recommender.pth", map_location=torch.device(device)))
 
+def get_hotel_by_location(loc):
+
+    hotels = []
+
+    for i in range(0, len(hotel_dict)):
+
+        if loc in df_unique_hotels["location"][i].lower():
+
+            # Getting Hotel Information
+            h_rating = int(df_unique_hotels['Hotel_rating'][i])
+            hotel = df_unique_hotels['hotel'][i]
+            host_name = df_unique_hotels['host'][i] 
+            img = df_unique_hotels['images-src'][i]
+            location = df_unique_hotels['location'][i]
+            guest = df_unique_hotels['guests'][i]
+            beds = df_unique_hotels['bedroom'][i]
+            bath = df_unique_hotels['bath'][i]
+            h_price = int(df_unique_hotels['price_per_night($)'][i])
+            review = df_unique_hotels['Comments'][i]
+            crime = df_unique_hotels['Crime Rate'][i]
+
+            hotels.append({"Hotel": hotel, "Rating": h_rating, "Location": location,
+                        "CrimeRate": crime, "Host": host_name, "Imagelink": img, "Guests":guest, 
+                        "Bedrooms": beds, "Bathrooms": bath, "Price($)": h_price, "Review": review})
+            
+    if len(hotels) == 0:
+        return {"No Results Found"}
+    
+    else:
+        return hotels
+
+
 def get_hotel_by_CrimeRate(rate):
 
-    filtered_df = df_unique_hotels[df_unique_hotels["Crime Rate"] == rate]
-    return filtered_df.to_json(orient='records')
+    hotels = []
+
+    for i in range(0, len(hotel_dict)):
+
+        if rate == df_unique_hotels["Crime Rate"][i].lower():
+
+            # Getting Hotel Information
+            h_rating = int(df_unique_hotels['Hotel_rating'][i])
+            hotel = df_unique_hotels['hotel'][i]
+            host_name = df_unique_hotels['host'][i] 
+            img = df_unique_hotels['images-src'][i]
+            location = df_unique_hotels['location'][i]
+            guest = df_unique_hotels['guests'][i]
+            beds = df_unique_hotels['bedroom'][i]
+            bath = df_unique_hotels['bath'][i]
+            h_price = int(df_unique_hotels['price_per_night($)'][i])
+            review = df_unique_hotels['Comments'][i]
+
+            hotels.append({"Hotel": hotel, "Rating": h_rating, "Location": location,
+                        "CrimeRate": rate, "Host": host_name, "Imagelink": img, "Guests":guest, 
+                        "Bedrooms": beds, "Bathrooms": bath, "Price($)": h_price, "Review": review})
+            
+    if len(hotels) == 0:
+        return {"No Results Found"}
+    
+    else:
+        return hotels
 
 def get_hotel(string):
 
