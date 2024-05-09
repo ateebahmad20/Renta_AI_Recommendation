@@ -72,7 +72,7 @@ def show_picks(index, Houses):
 
     recommendations.append({"Location": location, "Area": area, "Marla": marla, "Latitude": lat, "Longitude": lon,
                             "Bathrooms": bath, "Bedrooms": beds, "Rent(K)": rent, "Crime Rate": crimeRate})
-  
+      
   return recommendations
    
 # Function for find common area from all preferred locations

@@ -4,13 +4,13 @@ from TenantRecommendation.tenant_functions import get_coordinates, find_common_a
 # Reading Dataset on Houses
 Houses = pd.read_csv("TenantRecommendation/Houses_2023.csv")
 
-# To Store preferred locations
-loc = []
-indices = []
-lat = []
-lon = []
-
 def house_recommendation(loc1, loc2, loc3, price):
+
+    # To Store preferred locations
+    loc = []
+    indices = []
+    lat = []
+    lon = []
 
     loc.append(loc1)
     loc.append(loc2)
@@ -26,7 +26,7 @@ def house_recommendation(loc1, loc2, loc3, price):
         # Using K-Nearest Neighbour Model to find Nearest Locations:
         index = find_nearest_neighbours(Houses, lat[i], lon[i])
         indices.append(index)
-   
+    
     # Finding Common locations from each preferred locations
     common = find_common_area(indices)
 
