@@ -3,6 +3,7 @@ from TouristRecommendation.tourist_model import Recommender
 from TouristRecommendation.tourist_dataset import *
 from TouristRecommendation.input import get_ids
 import numpy as np
+import random
   
 model = Recommender(user_classes, location_classes, hotel_classes, hotelRating_classes, price_classes)
 
@@ -167,9 +168,11 @@ def hotel_recommendations(Name, Location, Price):
     recommendations = []
     for i in range(0,20):
 
+        h = random.randint(0,161)
+
         # Getting Hotel Information
         h_rating = ratings[top_recommendations[i]].item()
-        hotel = reverse_hotel_dict[top_recommendations[i]]
+        hotel = reverse_hotel_dict[h]
         host_name = df_unique_hotels[df_unique_hotels['hotel'] == hotel]['host'].item()
         img = df_unique_hotels[df_unique_hotels['hotel'] == hotel]['images-src'].item()
         location = df_unique_hotels[df_unique_hotels['hotel'] == hotel]['location'].item()
